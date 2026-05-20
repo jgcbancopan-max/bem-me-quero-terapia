@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bem Me Quero | Saúde Mental Corporativa</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1A1A2E;
+    --wine: #7B2D42;
+    --rose: #C4636A;
+    --gold: #C9A84C;
+    --sage: #6B8C6E;
+    --light-sage: #D4E4D6;
+    --text: #2C2C3E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(123,45,66,0.45) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 50% at 10% 80%, rgba(107,140,110,0.3) 0%, transparent 60%);
+  }
+
+  .hero-noise {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .nav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 28px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-logo span { color: var(--rose); }
+
+  .nav-cta {
+    background: transparent;
+    border: 1px solid rgba(245,240,232,0.4);
+    color: var(--cream);
+    padding: 10px 24px;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .nav-cta:hover {
+    background: var(--rose);
+    border-color: var(--rose);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    padding: 0 60px;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 24px;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--rose);
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.72);
+    max-width: 560px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+
+  .btn-primary {
+    background: var(--rose);
+    color: white;
+    padding: 16px 36px;
+    border: none;
+    border-radius: 2px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-primary:hover {
+    background: var(--wine);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(123,45,66,0.5);
+  }
+
+  .btn-secondary {
+    color: rgba(245,240,232,0.8);
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s;
+  }
+
+  .btn-secondary:hover { color: var(--cream); }
+
+  .hero-stat-strip {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(245,240,232,0.06);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(245,240,232,0.1);
+    display: flex;
+    z-index: 3;
+  }
+
+  .hero-stat {
+    flex: 1;
+    padding: 24px 40px;
+    border-right: 1px solid rgba(245,240,232,0.08);
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+
+  .hero-stat:last-child { border-right: none; }
+
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--rose);
+    display: block;
+  }
+
+  .hero-stat-label {
+    font-size: 0.8rem;
+    color: rgba(245,240,232,0.55);
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+
+  /* ALARM SECTION */
+  .alarm {
+    background: var(--wine);
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .alarm::after {
+    content: '⚠';
+    position: absolute;
+    right: -20px;
+    top: -40px;
+    font-size: 18rem;
+    opacity: 0.06;
+    line-height: 1;
+  }
+
+  .alarm-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .alarm-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.6);
+    margin-bottom: 20px;
+  }
+
+  .alarm-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .alarm-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.75);
+  }
+
+  .alarm-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .alarm-card {
+    background: rgba(245,240,232,0.08);
+    border: 1px solid rgba(245,240,232,0.15);
+    border-radius: 4px;
+    padding: 24px 28px;
+    position: relative;
+    transition: all 0.3s;
+  }
+
+  .alarm-card:hover {
+    background: rgba(245,240,232,0.13);
+    transform: translateX(6px);
+  }
+
+  .alarm-card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+
+  .alarm-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .alarm-card-text {
+    font-size: 0.88rem;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.6;
+  }
+
+  .alarm-card-num {
+    position: absolute;
+    top: 16px; right: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: rgba(245,240,232,0.08);
+  }
+
+  /* COST SECTION */
+  .cost {
+    padding: 100px 60px;
+    background: var(--cream);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 64px;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    font-size: 1.05rem;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  .cost-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .cost-card {
+    background: white;
+    border: 1px solid #E8E2D8;
+    border-radius: 4px;
+    padding: 36px 32px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cost-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--rose);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .cost-card:hover::before { transform: scaleX(1); }
+
+  .cost-card:hover {
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    transform: translateY(-4px);
+  }
+
+  .cost-icon { font-size: 2.5rem; margin-bottom: 16px; }
+
+  .cost-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--wine);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .cost-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .cost-text {
+    font-size: 0.85rem;
+    color: #888;
+    line-height: 1.6;
+  }
+
+  /* SOLUTION */
+  .solution {
+    background: var(--dark);
+    padding: 100px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .solution::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(107,140,110,0.2) 0%, transparent 65%);
+  }
+
+  .solution-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .solution-header { max-width: 560px; margin-bottom: 64px; }
+
+  .solution-header .section-tag { color: var(--sage); }
+
+  .solution-header .section-title { color: var(--cream); }
+
+  .solution-header .section-sub { color: rgba(245,240,232,0.6); text-align: left; }
+
+  .solution-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: rgba(245,240,232,0.08);
+  }
+
+  .solution-item {
+    background: var(--dark);
+    padding: 40px;
+    transition: background 0.3s;
+    position: relative;
+  }
+
+  .solution-item:hover { background: rgba(245,240,232,0.04); }
+
+  .sol-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: rgba(245,240,232,0.06);
+    position: absolute;
+    top: 16px; right: 24px;
+    line-height: 1;
+  }
+
+  .sol-icon {
+    width: 48px; height: 48px;
+    background: rgba(196,99,106,0.15);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+
+  .sol-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+
+  .sol-text {
+    font-size: 0.9rem;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.7;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 100px 60px;
+    background: var(--light-sage);
+  }
+
+  .testimonials .section-header { max-width: 560px; }
+
+  .testimonials .section-title { color: var(--dark); }
+
+  .test-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .test-card {
+    background: white;
+    padding: 36px 32px;
+    border-radius: 4px;
+    position: relative;
+  }
+
+  .test-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--rose);
+    line-height: 0.5;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .test-text {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .test-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .test-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--rose);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 700;
+  }
+
+  .test-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--dark);
+  }
+
+  .test-role {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 2px;
+  }
+
+  /* AI AGENT SECTION */
+  .agent-section {
+    padding: 100px 60px;
+    background: var(--cream);
+  }
+
+  .agent-wrapper {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .agent-header { text-align: center; margin-bottom: 48px; }
+
+  .agent-box {
+    background: white;
+    border: 1px solid #E8E2D8;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.08);
+  }
+
+  .agent-topbar {
+    background: var(--dark);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .agent-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  .agent-dot.red { background: #FF5F57; }
+  .agent-dot.yellow { background: #FEBC2E; }
+  .agent-dot.green { background: #28C840; }
+
+  .agent-title-bar {
+    flex: 1;
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(245,240,232,0.5);
+    letter-spacing: 0.05em;
+  }
+
+  .agent-chat {
+    padding: 32px;
+    min-height: 460px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: #FAFAF8;
+  }
+
+  .msg {
+    max-width: 78%;
+    padding: 14px 18px;
+    border-radius: 4px;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .msg.bot {
+    background: var(--dark);
+    color: rgba(245,240,232,0.9);
+    align-self: flex-start;
+    border-bottom-left-radius: 0;
+  }
+
+  .msg.bot strong { color: var(--rose); }
+
+  .msg.user {
+    background: var(--rose);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 0;
+  }
+
+  .msg-typing {
+    background: var(--dark);
+    color: rgba(245,240,232,0.5);
+    align-self: flex-start;
+    padding: 14px 18px;
+    border-radius: 4px;
+    border-bottom-left-radius: 0;
+    font-size: 0.92rem;
+    display: none;
+  }
+
+  .typing-dots span {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(245,240,232,0.4);
+    margin: 0 2px;
+    animation: typingBounce 1.2s infinite;
+  }
+
+  .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  .agent-input-bar {
+    padding: 20px 24px;
+    border-top: 1px solid #E8E2D8;
+    display: flex;
+    gap: 12px;
+    background: white;
+  }
+
+  .agent-input {
+    flex: 1;
+    border: 1px solid #E8E2D8;
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    transition: border-color 0.3s;
+    color: var(--text);
+  }
+
+  .agent-input:focus { border-color: var(--rose); }
+  .agent-input::placeholder { color: #bbb; }
+
+  .agent-send {
+    background: var(--rose);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .agent-send:hover { background: var(--wine); }
+
+  .agent-disclaimer {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 0.8rem;
+    color: #aaa;
+  }
+
+  /* CTA FINAL */
+  .final-cta {
+    background: var(--wine);
+    padding: 100px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(196,99,106,0.35) 0%, transparent 70%);
+  }
+
+  .final-cta-inner { position: relative; max-width: 700px; margin: 0 auto; }
+
+  .final-cta .section-title { color: var(--cream); margin-bottom: 20px; }
+
+  .final-cta .section-sub { color: rgba(245,240,232,0.72); margin-bottom: 40px; text-align: center; }
+
+  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  .btn-light {
+    background: var(--cream);
+    color: var(--wine);
+    padding: 16px 36px;
+    border: none;
+    border-radius: 2px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-light:hover {
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+  }
+
+  .btn-outline-light {
+    background: transparent;
+    color: var(--cream);
+    padding: 16px 36px;
+    border: 1.5px solid rgba(245,240,232,0.5);
+    border-radius: 2px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-outline-light:hover {
+    border-color: var(--cream);
+    background: rgba(245,240,232,0.1);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(245,240,232,0.06);
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+  }
+
+  .footer-logo span { color: var(--rose); }
+
+  .footer-text {
+    font-size: 0.8rem;
+    color: rgba(245,240,232,0.35);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-6px); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .nav { padding: 20px 24px; }
+    .hero-inner { padding: 0 24px; }
+    .hero-stat-strip { display: none; }
+    .alarm, .cost, .solution, .testimonials, .agent-section, .final-cta { padding: 60px 24px; }
+    .alarm-inner, .solution-grid, .cost-grid, .test-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-noise"></div>
+  <nav class="nav">
+    <div class="nav-logo">Bem Me <span>Quero</span></div>
+    <a href="https://vivendoterapia-7cnayqko.manus.space/" target="_blank" class="nav-cta">Conhecer o Site</a>
+  </nav>
+
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Saúde Mental Corporativa</div>
+    <h1 class="hero-title">
+      Sua empresa paga<br>pelo <em>adoecimento</em><br>dos seus talentos.
+    </h1>
+    <p class="hero-subtitle">
+      Burnout, ansiedade e estresse crônico custam caro — em afastamentos, turnover e queda de produtividade. 
+      Existe uma solução. E ela começa com cuidar de quem faz sua empresa funcionar.
+    </p>
+    <div class="hero-actions">
+      <a href="#agente" class="btn-primary">Falar com nosso agente →</a>
+      <a href="https://vivendoterapia-7cnayqko.manus.space/" target="_blank" class="btn-secondary">
+        ↗ Conhecer a plataforma
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-stat-strip">
+    <div class="hero-stat">
+      <span class="hero-stat-num">R$ 26bi</span>
+      <div class="hero-stat-label">perdidos por ano com burnout no Brasil</div>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">72%</span>
+      <div class="hero-stat-label">dos trabalhadores relatam estresse crônico</div>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">4×</span>
+      <div class="hero-stat-label">mais retorno sobre investimento em saúde mental</div>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">1 em 3</span>
+      <div class="hero-stat-label">colaboradores considerou pedir demissão por saúde mental</div>
+    </div>
+  </div>
+</section>
+
+<!-- ALARME -->
+<section class="alarm">
+  <div class="alarm-inner">
+    <div>
+      <div class="alarm-label">⚠ Atenção, RH & Gestores</div>
+      <h2 class="alarm-title">O silêncio dos seus colaboradores está custando muito.</h2>
+      <p class="alarm-text">
+        Colaboradores adoecidos não pedem ajuda — eles pedem demissão, se afastam ou simplesmente deixam de dar o seu melhor. 
+        O sofrimento psicológico no ambiente de trabalho é silencioso, mas seus efeitos são devastadores para os resultados da empresa.
+      </p>
+    </div>
+    <div class="alarm-cards">
+      <div class="alarm-card reveal">
+        <div class="alarm-card-num">01</div>
+        <div class="alarm-card-icon">🔥</div>
+        <div class="alarm-card-title">Burnout</div>
+        <div class="alarm-card-text">Esgotamento total — físico e mental. O colaborador chega ao limite sem que a empresa perceba. A CID-11 já reconhece como doença ocupacional.</div>
+      </div>
+      <div class="alarm-card reveal">
+        <div class="alarm-card-num">02</div>
+        <div class="alarm-card-icon">🌀</div>
+        <div class="alarm-card-title">Estresse Crônico</div>
+        <div class="alarm-card-text">Pressão constante, metas inalcançáveis e falta de suporte criam um ciclo de ansiedade que destrói a criatividade e o engajamento.</div>
+      </div>
+      <div class="alarm-card reveal">
+        <div class="alarm-card-num">03</div>
+        <div class="alarm-card-icon">📉</div>
+        <div class="alarm-card-title">Presenteísmo</div>
+        <div class="alarm-card-text">O colaborador está "presente" mas mentalmente ausente. Custa mais do que o absenteísmo e é invisível nos relatórios de RH.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTO -->
+<section class="cost">
+  <div class="section-header reveal">
+    <div class="section-tag">O Custo Real</div>
+    <h2 class="section-title">Números que toda empresa precisa conhecer</h2>
+    <p class="section-sub">Ignorar a saúde mental dos colaboradores não é neutro — tem um preço altíssimo.</p>
+  </div>
+  <div class="cost-grid">
+    <div class="cost-card reveal">
+      <div class="cost-icon">💸</div>
+      <span class="cost-num">R$12k</span>
+      <div class="cost-label">Custo médio de um afastamento</div>
+      <div class="cost-text">Cada colaborador afastado por burnout custa em média R$12.000 entre produtividade perdida, processo de desligamento e recontratação.</div>
+    </div>
+    <div class="cost-card reveal">
+      <div class="cost-icon">🚪</div>
+      <span class="cost-num">47%</span>
+      <div class="cost-label">Turnover ligado à saúde mental</div>
+      <div class="cost-text">Quase metade dos pedidos de demissão têm como causa raiz problemas de saúde mental não tratados no ambiente de trabalho.</div>
+    </div>
+    <div class="cost-card reveal">
+      <div class="cost-icon">📊</div>
+      <span class="cost-num">−23%</span>
+      <div class="cost-label">Queda de produtividade</div>
+      <div class="cost-text">Colaboradores com alto nível de estresse produzem 23% menos, segundo pesquisa da Gallup com empresas brasileiras.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUÇÃO -->
+<section class="solution">
+  <div class="solution-inner">
+    <div class="solution-header reveal">
+      <div class="section-tag">A Solução</div>
+      <h2 class="section-title" style="color:var(--cream)">Bem Me Quero Terapia: cuidado real para equipes reais.</h2>
+      <p class="section-sub">Uma plataforma completa de suporte emocional e terapêutico para os colaboradores da sua empresa.</p>
+    </div>
+    <div class="solution-grid">
+      <div class="solution-item reveal">
+        <div class="sol-num">01</div>
+        <div class="sol-icon">🧠</div>
+        <div class="sol-title">Sessões de Terapia Individual</div>
+        <div class="sol-text">Profissionais especializados em saúde mental corporativa. Sessões online, flexíveis, com sigilo total — para que o colaborador se sinta seguro.</div>
+      </div>
+      <div class="solution-item reveal">
+        <div class="sol-num">02</div>
+        <div class="sol-icon">🤝</div>
+        <div class="sol-title">Workshops para Equipes</div>
+        <div class="sol-text">Dinâmicas e treinamentos em inteligência emocional, gestão do estresse e comunicação não violenta para líderes e times.</div>
+      </div>
+      <div class="solution-item reveal">
+        <div class="sol-num">03</div>
+        <div class="sol-icon">📋</div>
+        <div class="sol-title">Diagnóstico Organizacional</div>
+        <div class="sol-text">Mapeamos os riscos psicossociais da sua empresa com relatórios claros e recomendações estratégicas para o RH.</div>
+      </div>
+      <div class="solution-item reveal">
+        <div class="sol-num">04</div>
+        <div class="sol-icon">💬</div>
+        <div class="sol-title">Canal de Escuta Contínua</div>
+        <div class="sol-text">Acolhimento disponível para colaboradores em momentos de crise — porque urgências emocionais não têm hora marcada.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="testimonials">
+  <div class="section-header reveal" style="margin: 0 auto 64px;">
+    <div class="section-tag">Resultados Reais</div>
+    <h2 class="section-title">O que líderes dizem depois de investir em cuidado</h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card reveal">
+      <span class="test-quote">"</span>
+      <p class="test-text">Depois de implementar o programa, o absenteísmo caiu 38% em 6 meses. Mas o mais valioso foi ver o clima da empresa mudar de verdade.</p>
+      <div class="test-author">
+        <div class="test-avatar">C</div>
+        <div>
+          <div class="test-name">Carla M.</div>
+          <div class="test-role">Diretora de RH · Empresa de Tecnologia</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card reveal">
+      <span class="test-quote">"</span>
+      <p class="test-text">Nossa equipe de líderes passou por um workshop de inteligência emocional e o feedback dos liderados foi surpreendente. A comunicação melhorou completamente.</p>
+      <div class="test-author">
+        <div class="test-avatar">R</div>
+        <div>
+          <div class="test-name">Rafael S.</div>
+          <div class="test-role">CEO · Consultoria Financeira</div>
+        </div>
+      </div>
+    </div>
+    <div class="test-card reveal">
+      <span class="test-quote">"</span>
+      <p class="test-text">Perdemos dois colaboradores-chave para burnout antes de agir. Hoje temos uma cultura de cuidado genuíno. O ROI foi imediato.</p>
+      <div class="test-author">
+        <div class="test-avatar">A</div>
+        <div>
+          <div class="test-name">Ana L.</div>
+          <div class="test-role">Head of People · Varejo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENTE IA -->
+<section class="agent-section" id="agente">
+  <div class="agent-wrapper">
+    <div class="agent-header reveal">
+      <div class="section-tag">Agente de Marketing Inteligente</div>
+      <h2 class="section-title">Converse com nosso agente especializado</h2>
+      <p class="section-sub" style="text-align:center; color:#666; margin-top:12px;">
+        Tire dúvidas, peça uma proposta ou descubra como a Bem Me Quero pode ajudar a sua empresa.
+      </p>
+    </div>
+    <div class="agent-box reveal">
+      <div class="agent-topbar">
+        <div class="agent-dot red"></div>
+        <div class="agent-dot yellow"></div>
+        <div class="agent-dot green"></div>
+        <div class="agent-title-bar">Bem Me Quero · Agente Corporativo</div>
+      </div>
+      <div class="agent-chat" id="chatArea">
+        <div class="msg bot">
+          👋 Olá! Sou o agente da <strong>Bem Me Quero | Terapia</strong>.<br><br>
+          Estou aqui para ajudar líderes e gestores a entender como proteger o bem-estar mental das suas equipes.<br><br>
+          Me conte: <strong>quantos colaboradores tem sua empresa?</strong> Posso mostrar o impacto que o burnout pode estar causando hoje mesmo.
+        </div>
+        <div class="msg-typing" id="typing">
+          <div class="typing-dots"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+      <div class="agent-input-bar">
+        <input type="text" class="agent-input" id="userInput" placeholder="Digite sua pergunta sobre saúde mental corporativa..." />
+        <button class="agent-send" id="sendBtn" onclick="sendMessage()">Enviar →</button>
+      </div>
+    </div>
+    <p class="agent-disclaimer">Agente movido por IA · Especializado em saúde mental corporativa</p>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final-cta">
+  <div class="final-cta-inner">
+    <div class="section-tag" style="color: rgba(245,240,232,0.6)">Próximo Passo</div>
+    <h2 class="section-title">Pronto para cuidar de quem faz sua empresa crescer?</h2>
+    <p class="section-sub">Agende uma conversa sem compromisso. Vamos entender o momento da sua empresa e apresentar um plano personalizado.</p>
+    <div class="cta-btns">
+      <a href="https://vivendoterapia-7cnayqko.manus.space/" target="_blank" class="btn-light">Acessar o Site Oficial →</a>
+      <a href="#agente" class="btn-outline-light">Falar com o Agente</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Bem Me <span>Quero</span> | Terapia</div>
+  <div class="footer-text">Cuidando de pessoas. Fortalecendo empresas.</div>
+</footer>
+
+<script>
+const SITE_URL = "https://vivendoterapia-7cnayqko.manus.space/";
+
+const systemPrompt = `Você é o agente de marketing e vendas da "Bem Me Quero | Terapia" (${SITE_URL}), especializado em saúde mental corporativa.
+
+Seu objetivo é ATRAIR e CONVERTER empresas a contratarem os serviços de saúde mental para seus colaboradores.
+
+Serviços oferecidos:
+- Sessões de terapia individual online para colaboradores
+- Workshops corporativos de inteligência emocional e gestão do estresse
+- Diagnóstico organizacional de riscos psicossociais  
+- Canal de escuta contínua para momentos de crise
+- Treinamentos para líderes em saúde mental
+
+Principais dores que você resolve:
+- Burnout e esgotamento profissional (CID-11)
+- Estresse crônico e ansiedade no trabalho
+- Alto turnover ligado a saúde mental
+- Presenteísmo (presença física, ausência mental)
+- Clima organizacional deteriorado
+- Afastamentos e afastamentos médicos
+
+ESTATÍSTICAS que você pode usar:
+- Brasil perde R$26 bilhões/ano com burnout
+- 72% dos trabalhadores têm estresse crônico
+- 47% do turnover está ligado à saúde mental
+- ROI de 4:1 em programas de saúde mental corporativa
+- Redução média de 38% no absenteísmo com programas de apoio
+
+ABORDAGEM:
+- Seja consultivo, não agressivo
+- Faça perguntas para entender o tamanho da empresa e principais dores
+- Use dados e estatísticas para criar senso de urgência
+- Mostre o custo de NÃO agir
+- Direcione para o site quando apropriado
+- Ofereça agendar uma conversa sem compromisso
+- Respostas em português, tom profissional mas acolhedor
+- Respostas concisas (máximo 5 linhas por mensagem)
+
+Quando o usuário demonstrar interesse, ofereça: "Posso agendar uma demonstração gratuita para sua empresa? Acesse ${SITE_URL} ou me diga como entrar em contato."`;
+
+let conversationHistory = [];
+
+async function sendMessage() {
+  const input = document.getElementById('userInput');
+  const userText = input.value.trim();
+  if (!userText) return;
+
+  appendMessage(userText, 'user');
+  input.value = '';
+  document.getElementById('sendBtn').disabled = true;
+
+  conversationHistory.push({ role: 'user', content: userText });
+
+  const typing = document.getElementById('typing');
+  typing.style.display = 'block';
+  scrollChat();
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: conversationHistory
+      })
+    });
+
+    const data = await response.json();
+    typing.style.display = 'none';
+
+    const botText = data.content?.[0]?.text || 'Desculpe, ocorreu um erro. Tente novamente.';
+    conversationHistory.push({ role: 'assistant', content: botText });
+    appendMessage(botText, 'bot');
+  } catch (err) {
+    typing.style.display = 'none';
+    appendMessage('Erro de conexão. Por favor, tente novamente.', 'bot');
+  }
+
+  document.getElementById('sendBtn').disabled = false;
+}
+
+function appendMessage(text, type) {
+  const chat = document.getElementById('chatArea');
+  const typing = document.getElementById('typing');
+  const msg = document.createElement('div');
+  msg.className = `msg ${type}`;
+
+  // Convert markdown-ish bold to <strong>
+  const formatted = text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br>');
+  msg.innerHTML = formatted;
+
+  chat.insertBefore(msg, typing);
+  scrollChat();
+}
+
+function scrollChat() {
+  const chat = document.getElementById('chatArea');
+  chat.scrollTop = chat.scrollHeight;
+}
+
+document.getElementById('userInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') sendMessage();
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) el.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
